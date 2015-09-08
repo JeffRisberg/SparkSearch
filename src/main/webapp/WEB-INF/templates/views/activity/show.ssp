@@ -1,0 +1,16 @@
+<% import com.incra.model.Activity %>
+<%@ val activity: com.incra.model.Activity %>
+
+<div style="margin-top: 30px; background: #ccc; padding: 10px">
+<table class="table">
+    <tr>
+        <td>Name:</td><td>${activity.name}</td>
+    </tr>
+    <tr>
+        <td>Description:</td><td>${activity.description}</td>
+    </tr>
+    <tr>
+        <td>Uom:</td><td>${activity.uom}</td>
+    </tr>
+</table>
+</div>

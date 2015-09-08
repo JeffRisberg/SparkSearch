@@ -1,0 +1,16 @@
+<% import com.incra.model.Origin %>
+<%@ val origin: com.incra.model.Origin %>
+
+<div style="margin-top: 30px; background: #ccc; padding: 10px">
+<table class="table">
+    <tr>
+        <td>Name:</td><td>${origin.name}</td>
+    </tr>
+    <tr>
+        <td>Lat:</td><td>${origin.lat}</td>
+    </tr>
+    <tr>
+        <td>Lng:</td><td>${origin.lng}</td>
+    </tr>
+</table>
+</div>

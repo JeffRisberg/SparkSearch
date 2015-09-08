@@ -1,0 +1,20 @@
+<%@ val title: String = "Default Title" %>
+<%@ val body: String %>
+
+<html>
+<head>
+<title><%= title %></title>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"/>
+<link rel="stylesheet" href="../styles/main.css"/>
+
+<script src="../js/jquery-1.11.3.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <header><a href="/"><img src="/images/sparksearch_logo.png" alt="SparkSearch"/></a></header>
+    <div class="container">
+        <%= unescape(body) %>
+    </div>
+    </body>
+</html>

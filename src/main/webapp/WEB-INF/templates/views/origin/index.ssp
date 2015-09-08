@@ -1,0 +1,18 @@
+<% import com.incra.model.Origin %>
+<%@ val name: Any %>
+<%@ val origins: List[com.incra.model.Origin] %>
+
+<div style="margin-top: 30px; background: #ccc; padding: 10px">
+<h3>The current origins are:</h3>
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Direction</th>
+    </tr>
+    #for (origin <- origins)
+        <tr>
+            <td><a href="/origin/${origin.id}">${origin.name}</a></td>
+        </tr>
+    #end
+</table>
+</div>

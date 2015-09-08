@@ -1,0 +1,21 @@
+<% import com.incra.model.Activity %>
+<%@ val name: Any %>
+<%@ val activities: List[com.incra.model.Activity] %>
+
+<div style="margin-top: 30px; background: #ccc; padding: 10px">
+<h3>The selected activities are:</h3>
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Units</th>
+    </tr>
+    #for (activity <- activities)
+        <tr>
+            <td><a href="/activity/${activity.id}"><%= activity.name %></a></td>
+            <td><%= activity.description %></td>
+            <td><%= activity.uom %></td>
+        </tr>
+    #end
+</table>
+</div>

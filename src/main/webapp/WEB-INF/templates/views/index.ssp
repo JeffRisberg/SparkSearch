@@ -1,0 +1,12 @@
+<%@ val city: String %>
+<%@ val state: String %>
+<%@ val population: Integer %>
+
+<div style="margin-top: 30px; background: #ccc; padding: 10px">
+<h3><a href="/activity">Activities</a></h3>
+<h3><a href="/facility">Facility</a></h3>
+<h3><a href="/origin">Origin</a></h3>
+<p>City: <%= city %></p>
+<p>State: <%= state %></p>
+<p>Population: <%= population %></p>
+</div>

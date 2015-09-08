@@ -1,0 +1,17 @@
+<% import com.incra.model.Facility %>
+<%@ val facility: com.incra.model.Facility %>
+
+<div style="margin-top: 30px; background: #ccc; padding: 10px">
+<table class="table">
+    <tr>
+        <td>Name:</td><td>${facility.name}</td>
+    </tr>
+
+    <tr>
+        <td>Lat:</td><td>${facility.lat}</td>
+    </tr>
+    <tr>
+        <td>Lng:</td><td>${facility.lng}</td>
+    </tr>
+</table>
+</div>
