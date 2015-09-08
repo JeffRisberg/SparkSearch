@@ -6,5 +6,5 @@
 <h3><a href="/activity">Activities</a></h3>
 <h3><a href="/facility">Facilities</a></h3>
 <h3><a href="/origin">Patient Origins</a></h3>
-<h3><a href="/map">Map</a></h3>
+<h3><a href="/map?id=1">Map</a></h3>
 </div>

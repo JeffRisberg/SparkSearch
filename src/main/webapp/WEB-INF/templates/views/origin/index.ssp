@@ -8,12 +8,14 @@
         <th>Name</th>
         <th>Lat</th>
         <th>Lng</th>
+        <th>Lng</th>
     </tr>
     #for (origin <- origins)
         <tr>
             <td><a href="/origin/${origin.id}">${origin.name}</a></td>
             <td>${origin.lat}</td>
             <td>${origin.lng}</td>
+            <td><a href="/map?id=${origin.id}">Map</a></td>
         </tr>
     #end
 </table>

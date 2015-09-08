@@ -142,9 +142,17 @@ class MainServlet(implicit val bindingModule: BindingModule) extends SparkSearch
   get("/map") {
     contentType = "text/html"
 
-    val data1 = List("title" -> "Spark Search Example")
-    val data2 = data1 ++ List()
+    val originOpt = originService.findById(params("id").toLong)
+    if (originOpt.isDefined) {
+      val origin = originOpt.get
 
-    ssp("/map/index", data2.toSeq: _*)
+      val data1 = List("title" -> "Spark Search Example")
+      val data2 = data1 ++ List("origin" -> origin)
+
+      ssp("/map/index", data2.toSeq: _*)
+    }
+    else {
+      redirect("/origin")
+    }
   }
 }

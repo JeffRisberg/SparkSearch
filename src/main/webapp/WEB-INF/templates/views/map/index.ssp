@@ -1,4 +1,5 @@
 <% import com.incra.model.Origin %>
+<%@ val origin: com.incra.model.Origin %>
 
 <style>
 
@@ -15,11 +16,19 @@ Google Maps Integration
 </div>
 
 <script>
+  var myLatLng = {lat: ${origin.lat}, lng: ${origin.lng}};
+
 var map;
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 6.413, lng: -10.644},
     zoom: 8
+  });
+
+  var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    title: '${origin.name}'
   });
 }
 </script>
