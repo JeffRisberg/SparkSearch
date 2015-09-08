@@ -129,7 +129,7 @@ class MainServlet(implicit val bindingModule: BindingModule) extends SparkSearch
     if (originOpt.isDefined) {
       val origin = originOpt.get
 
-      val data1 = List("title" -> "Spark Search Leaderboard")
+      val data1 = List("title" -> "Spark Search Patient Origins")
       val data2 = data1 ++ List("origin" -> origin)
 
       ssp("/origin/show", data2.toSeq: _*)

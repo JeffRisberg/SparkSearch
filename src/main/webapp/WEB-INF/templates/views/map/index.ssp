@@ -30,6 +30,18 @@ function initMap() {
     map: map,
     title: '${origin.name}'
   });
+
+  var rectangle = new google.maps.Rectangle({
+    strokeColor: '#FF0000',
+    strokeOpacity: 0.8,
+    strokeWeight: 2,
+    fillColor: '#FF0000',
+    fillOpacity: 0.35,
+    map: map,
+    bounds: new google.maps.LatLngBounds(
+        new google.maps.LatLng(7.1, -9.7),
+        new google.maps.LatLng(7.2, -9.6))
+  });
 }
 </script>
  <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"

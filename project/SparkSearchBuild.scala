@@ -1,5 +1,5 @@
 import sbt._
-import Keys._
+import sbt.Keys._
 import org.scalatra.sbt._
 import org.scalatra.sbt.PluginKeys._
 import com.mojolly.scalate.ScalatePlugin._
@@ -26,6 +26,8 @@ object SparkSearchBuild extends Build {
         "org.scalatra" %% "scalatra-scalate" % ScalatraVersion,
         "org.scalatra" %% "scalatra-specs2" % ScalatraVersion % "test",
         "ch.qos.logback" % "logback-classic" % "1.0.6" % "runtime",
+        "com.github.scopt" %% "scopt" % "3.2.0",
+        "org.apache.spark" %% "spark-core" % "1.3.1",
         "org.scalatra" %% "scalatra-json" % "2.3.0",
         "org.json4s" %% "json4s-jackson" % "3.2.9",
         "com.escalatesoft.subcut" %% "subcut" % "2.0",
