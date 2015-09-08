@@ -8,13 +8,14 @@
         <th>Name</th>
         <th>Lat</th>
         <th>Lng</th>
-        <th>Active</th>
+        <th>Capacity</th>
     </tr>
     #for (facility <- facilities)
         <tr>
             <td><a href="/facility/${facility.id}">${facility.name}</a></td>
             <td>${facility.lat}</td>
             <td>${facility.lng}</td>
+            <td>${facility.capacity}</td>
         </tr>
     #end
 </table>

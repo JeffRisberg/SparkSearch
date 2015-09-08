@@ -8,7 +8,7 @@ import scala.slick.driver.MySQLDriver.simple._
  * @author Jeff Risberg
  * @since 08/12/2015
  */
-case class Facility(id: Option[Long], name: String, lat: Double, lng: Double) extends Entity[Long]
+case class Facility(id: Option[Long], name: String, lat: Double, lng: Double, capacity: Double) extends Entity[Long]
 
 class FacilityTable(tag: Tag) extends Table[Facility](tag, "FACILITY") {
 
@@ -20,6 +20,8 @@ class FacilityTable(tag: Tag) extends Table[Facility](tag, "FACILITY") {
 
   def lng = column[Double]("LNG")
 
+  def capacity = column[Double]("CAPACITY")
+
   // Every table needs a * projection with the same type as the table's type parameter
-  def * = (id.?, name, lat, lng) <>(Facility.tupled, Facility.unapply _)
+  def * = (id.?, name, lat, lng, capacity) <>(Facility.tupled, Facility.unapply _)
 }

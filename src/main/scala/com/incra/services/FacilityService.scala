@@ -24,9 +24,9 @@ class FacilityService(implicit val bindingModule: BindingModule) extends Injecta
       if (MTable.getTables("facility").list().isEmpty) {
         (facilities.ddl).create
 
-        facilities += Facility(None, "Primary Treatment Center", 6.317, -10.8)
-        facilities += Facility(Some(101), "Patient Intake Center", 6.32, -10.6)
-        facilities += Facility(None, "Emergency Treatment Center", 6.3175, -10.7)
+        facilities += Facility(None, "Primary Treatment Center", 6.317, -10.8, 2000.0)
+        facilities += Facility(None, "Patient Intake Center", 6.32, -10.6, 1000.0)
+        facilities += Facility(None, "Emergency Treatment Center", 6.3175, -10.7, 1200.0)
       }
   }
   println("EndInitFacilityService")

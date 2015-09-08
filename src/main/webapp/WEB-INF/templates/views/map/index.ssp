@@ -31,17 +31,21 @@ function initMap() {
     title: '${origin.name}'
   });
 
-  var rectangle = new google.maps.Rectangle({
-    strokeColor: '#FF0000',
-    strokeOpacity: 0.8,
-    strokeWeight: 2,
+
+#for (lat <- 6.0 to 7.6 by 0.2; lng <- -8.6 to -10.8 by -0.2)
+  new google.maps.Rectangle({
+
+    strokeWeight: 0,
     fillColor: '#FF0000',
-    fillOpacity: 0.35,
+    fillOpacity: ${Math.random()},
     map: map,
     bounds: new google.maps.LatLngBounds(
-        new google.maps.LatLng(7.1, -9.7),
-        new google.maps.LatLng(7.2, -9.6))
+        new google.maps.LatLng(${lat}, ${lng}),
+        new google.maps.LatLng(${lat+0.2}, ${lng+0.2}))
   });
+#end
+
+
 }
 </script>
  <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"

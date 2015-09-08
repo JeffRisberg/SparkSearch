@@ -11,7 +11,7 @@ import scala.slick.driver.MySQLDriver.simple._
  * @since 06/11/2015
  */
 case class Origin(id: Option[Long], name: String,
-                     startDate: Date, lat: Double, lng: Double) extends Entity[Long]
+                     date: Date, lat: Double, lng: Double) extends Entity[Long]
 
 class OriginTable(tag: Tag) extends Table[Origin](tag, "ORIGIN") {
 
@@ -19,12 +19,12 @@ class OriginTable(tag: Tag) extends Table[Origin](tag, "ORIGIN") {
 
   def name = column[String]("NAME")
 
-  def startDate = column[Date]("START_DATE")
+  def date = column[Date]("DATE")
 
   def lat = column[Double]("LAT")
 
   def lng = column[Double]("LNG")
 
   // Every table needs a * projection with the same type as the table's type parameter
-  def * = (id.?, name, startDate, lat, lng) <>(Origin.tupled, Origin.unapply _)
+  def * = (id.?, name, date, lat, lng) <>(Origin.tupled, Origin.unapply _)
 }

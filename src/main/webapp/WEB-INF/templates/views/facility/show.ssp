@@ -3,15 +3,18 @@
 
 <div style="margin-top: 30px; background: #ccc; padding: 10px">
 <table class="table">
-    <tr>
-        <td>Name:</td><td>${facility.name}</td>
-    </tr>
+  <tr>
+    <td>Name:</td><td>${facility.name}</td>
+  </tr>
 
-    <tr>
-        <td>Lat:</td><td>${facility.lat}</td>
-    </tr>
-    <tr>
-        <td>Lng:</td><td>${facility.lng}</td>
-    </tr>
+  <tr>
+    <td>Lat:</td><td>${facility.lat}</td>
+  </tr>
+  <tr>
+    <td>Lng:</td><td>${facility.lng}</td>
+  </tr>
+  <tr>
+    <td>Capacity:</td><td>${facility.capacity}</td>
+  </tr>
 </table>
 </div>

@@ -7,6 +7,9 @@
         <td>Name:</td><td>${origin.name}</td>
     </tr>
     <tr>
+        <td>Date:</td><td>${origin.date}</td>
+    </tr>
+    <tr>
         <td>Lat:</td><td>${origin.lat}</td>
     </tr>
     <tr>
