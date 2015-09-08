@@ -1,5 +1,4 @@
 <% import com.incra.model.Origin %>
-<%@ val name: Any %>
 <%@ val origins: List[com.incra.model.Origin] %>
 
 <div style="margin-top: 30px; background: #ccc; padding: 10px">

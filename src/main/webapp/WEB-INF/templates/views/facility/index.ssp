@@ -1,5 +1,4 @@
 <% import com.incra.model.Facility %>
-<%@ val name: Any %>
 <%@ val facilities: List[com.incra.model.Facility] %>
 
 <div style="margin-top: 30px; background: #ccc; padding: 10px">
