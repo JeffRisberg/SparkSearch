@@ -6,7 +6,7 @@ package com.incra.model
 
 case class GridCell(lat: Double,
                     lng: Double,
-                    probability: Double
+                    var probability: Double
                      ) {
 
   def containsPoint(lat: Double, lng: Double) =

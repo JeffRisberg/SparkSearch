@@ -2,11 +2,11 @@ package com.incra.app
 
 import com.escalatesoft.subcut.inject.BindingModule
 import com.incra.model.GridCell
-import com.incra.services.{FacilityService, OriginService, ActivityService}
+import com.incra.services.{ProcessService, ActivityService, FacilityService, OriginService}
 
 /**
  * @author Jeff Risberg
- * @since late August 2014
+ * @since late August 2015
  */
 class MainServlet(implicit val bindingModule: BindingModule) extends SparkSearchStack {
 
@@ -18,8 +18,8 @@ class MainServlet(implicit val bindingModule: BindingModule) extends SparkSearch
 
   val gridCells = for (lat <- 6.0 to 7.6 by 0.2;
                        lng <- -8.6 to -10.8 by -0.2)
-     yield {
-      GridCell(lat, lng, Math.random())
+    yield {
+      GridCell(lat, lng, 0.0)
     }
 
   get("/") {
@@ -29,6 +29,42 @@ class MainServlet(implicit val bindingModule: BindingModule) extends SparkSearch
     val data2 = data1 ++ List("city" -> "Palo Alto", "state" -> "California", "population" -> 66363)
 
     ssp("/index", data2.toSeq: _*)
+  }
+
+  get("/process") {
+
+    // clear the values in the grid cells
+    gridCells.foreach(_.probability = 0.0)
+
+    //run the process
+    val processService = new ProcessService()
+
+    val numTimesteps = 250
+    val numTrials = 10000
+    val parallelism = 1000
+
+    val counts = processService.run(gridCells, numTimesteps, numTrials, parallelism)
+
+    // update the cells
+    counts.foreach { case (gridCellOpt, count) =>
+      if (gridCellOpt.isDefined) {
+        val gridCell = gridCellOpt.get
+        var realGridCellOpt = gridCells.find {realGridCell => (realGridCell.lat == gridCell.lat && realGridCell.lng == gridCell.lng)}
+
+        if (realGridCellOpt.isDefined) {
+          val realGridCell = realGridCellOpt.get
+          realGridCell.probability = Math.min(1.0, 10.0 * count.toDouble / numTrials)
+        }
+      }
+    }
+
+    // run the map
+    contentType = "text/html"
+
+    val data1 = List("title" -> "Spark Search Example")
+    val data2 = data1 ++ List("originOpt" -> None, "gridCells" -> gridCells)
+
+    ssp("/map/index", data2.toSeq: _*)
   }
 
   get("/activity") {
@@ -149,17 +185,11 @@ class MainServlet(implicit val bindingModule: BindingModule) extends SparkSearch
   get("/map") {
     contentType = "text/html"
 
-    val originOpt = originService.findById(params("id").toLong)
-    if (originOpt.isDefined) {
-      val origin = originOpt.get
+    val originOpt = if (params.contains("id")) originService.findById(params("id").toLong) else None
 
-      val data1 = List("title" -> "Spark Search Example")
-      val data2 = data1 ++ List("origin" -> origin, "gridCells" -> gridCells)
+    val data1 = List("title" -> "Spark Search Example")
+    val data2 = data1 ++ List("originOpt" -> originOpt, "gridCells" -> gridCells)
 
-      ssp("/map/index", data2.toSeq: _*)
-    }
-    else {
-      redirect("/origin")
-    }
+    ssp("/map/index", data2.toSeq: _*)
   }
 }

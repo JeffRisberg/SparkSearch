@@ -1,7 +1,7 @@
 <% import com.incra.model.Origin %>
 <% import com.incra.model.GridCell %>
 
-<%@ val origin: com.incra.model.Origin %>
+<%@ val originOpt: Option[com.incra.model.Origin] %>
 <%@ val gridCells: Seq[com.incra.model.GridCell] %>
 
 <style>
@@ -19,7 +19,6 @@ Google Maps Integration
 </div>
 
 <script>
-  var myLatLng = {lat: ${origin.lat}, lng: ${origin.lng}};
 
 var map;
 function initMap() {
@@ -28,11 +27,13 @@ function initMap() {
     zoom: 8
   });
 
+  #if (originOpt.isDefined)
   var marker = new google.maps.Marker({
-    position: myLatLng,
+    position: {lat: ${originOpt.get.lat}, lng: ${originOpt.get.lng}},
     map: map,
-    title: '${origin.name}'
+    title: '${originOpt.get.name}'
   });
+  #end
 
 
 #for (gridCell <- gridCells)
