@@ -24,9 +24,9 @@ class OriginService(implicit val bindingModule: BindingModule) extends Injectabl
       if (MTable.getTables("origin").list().isEmpty) {
         (origins.ddl).create
 
-        origins += Origin(None, "Team Leaders", new Date(200,5,5), 4.5, -56.5)
-        origins += Origin(Some(101), "All-Time Winners", new Date(200,5,5), 4.5, -56.5)
-        origins += Origin(None, "Recent Gainers", new Date(200,5,5), 4.5, -56.5)
+        origins += Origin(None, "Initial Case", new Date(215,5,5), 6.38, -10.5)
+        origins += Origin(None, "Followup #1", new Date(215,5,8), 6.45, -10.7)
+        origins += Origin(None, "Followup #2", new Date(215,5,9), 6.245, -10.45)
       }
   }
   println("EndInitOriginService")

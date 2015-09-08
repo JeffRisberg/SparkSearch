@@ -6,11 +6,14 @@
 <table class="table">
     <tr>
         <th>Name</th>
-        <th>Direction</th>
+        <th>Lat</th>
+        <th>Lng</th>
     </tr>
     #for (origin <- origins)
         <tr>
             <td><a href="/origin/${origin.id}">${origin.name}</a></td>
+            <td>${origin.lat}</td>
+            <td>${origin.lng}</td>
         </tr>
     #end
 </table>

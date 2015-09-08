@@ -6,13 +6,15 @@
 <table class="table">
     <tr>
         <th>Name</th>
-        <th>Type</th>
-        <th>End Date</th>
+        <th>Lat</th>
+        <th>Lng</th>
         <th>Active</th>
     </tr>
     #for (facility <- facilities)
         <tr>
             <td><a href="/facility/${facility.id}">${facility.name}</a></td>
+            <td>${facility.lat}</td>
+            <td>${facility.lng}</td>
         </tr>
     #end
 </table>

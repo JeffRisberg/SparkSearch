@@ -138,4 +138,13 @@ class MainServlet(implicit val bindingModule: BindingModule) extends SparkSearch
       redirect("/origin")
     }
   }
+
+  get("/map") {
+    contentType = "text/html"
+
+    val data1 = List("title" -> "Spark Search Example")
+    val data2 = data1 ++ List()
+
+    ssp("/map/index", data2.toSeq: _*)
+  }
 }

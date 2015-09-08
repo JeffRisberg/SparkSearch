@@ -22,10 +22,10 @@ class ActivityService(implicit val bindingModule: BindingModule) extends Injecta
       if (MTable.getTables("activity").list().isEmpty) {
         (activities.ddl).create
 
-        activities += Activity(None, "Hiking", "Climb any mountain", "miles")
-        activities += Activity(Some(102), "Walking", "Go out and walk", "steps")
-        activities += Activity(None, "Spins", "Go to class at the fitness center", "minutes")
-        activities += Activity(Some(104), "Exercise", "Do whatever you want", "minutes")
+        activities += Activity(None, "Diagnostic Scan", "A-678-2", "low")
+        activities += Activity(None, "Isolation", "TI-723", "low")
+        activities += Activity(None, "Treatment", "TR-167", "medium")
+        activities += Activity(None, "Experimental Vaccine", "V-EX-0945", "high")
       }
   }
   println("EndInitActivityService")
