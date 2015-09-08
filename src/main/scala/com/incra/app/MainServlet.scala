@@ -1,6 +1,7 @@
 package com.incra.app
 
 import com.escalatesoft.subcut.inject.BindingModule
+import com.incra.model.GridCell
 import com.incra.services.{FacilityService, OriginService, ActivityService}
 
 /**
@@ -14,6 +15,12 @@ class MainServlet(implicit val bindingModule: BindingModule) extends SparkSearch
   private def facilityService = inject[FacilityService]
 
   private def originService = inject[OriginService]
+
+  val gridCells = for (lat <- 6.0 to 7.6 by 0.2;
+                       lng <- -8.6 to -10.8 by -0.2)
+     yield {
+      GridCell(lat, lng, Math.random())
+    }
 
   get("/") {
     contentType = "text/html"
@@ -147,7 +154,7 @@ class MainServlet(implicit val bindingModule: BindingModule) extends SparkSearch
       val origin = originOpt.get
 
       val data1 = List("title" -> "Spark Search Example")
-      val data2 = data1 ++ List("origin" -> origin)
+      val data2 = data1 ++ List("origin" -> origin, "gridCells" -> gridCells)
 
       ssp("/map/index", data2.toSeq: _*)
     }
