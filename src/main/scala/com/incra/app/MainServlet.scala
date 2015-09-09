@@ -16,8 +16,8 @@ class MainServlet(implicit val bindingModule: BindingModule) extends SparkSearch
 
   private def originService = inject[OriginService]
 
-  val gridCells = for (lat <- 6.0 to 7.6 by 0.2;
-                       lng <- -8.6 to -10.8 by -0.2)
+  val gridCells = for (lat <- 5.6 to 7.8 by 0.2;
+                       lng <- -11.0 to -9.0 by 0.2)
     yield {
       GridCell(lat, lng, 0.0)
     }
@@ -46,14 +46,18 @@ class MainServlet(implicit val bindingModule: BindingModule) extends SparkSearch
     val counts = processService.run(gridCells, numTimesteps, numTrials, parallelism)
 
     // update the cells
-    counts.foreach { case (gridCellOpt, count) =>
-      if (gridCellOpt.isDefined) {
-        val gridCell = gridCellOpt.get
-        var realGridCellOpt = gridCells.find {realGridCell => (realGridCell.lat == gridCell.lat && realGridCell.lng == gridCell.lng)}
+    val maxCount = counts.map { case (gridCellOpt, count) => if (gridCellOpt.isDefined) count else 0 }.max
 
-        if (realGridCellOpt.isDefined) {
-          val realGridCell = realGridCellOpt.get
-          realGridCell.probability = Math.min(1.0, 10.0 * count.toDouble / numTrials)
+    if (maxCount > 0) {
+      counts.foreach { case (gridCellOpt, count) =>
+        if (gridCellOpt.isDefined) {
+          val gridCell = gridCellOpt.get
+          var realGridCellOpt = gridCells.find { realGridCell => (realGridCell.lat == gridCell.lat && realGridCell.lng == gridCell.lng) }
+
+          if (realGridCellOpt.isDefined) {
+            val realGridCell = realGridCellOpt.get
+            realGridCell.probability = Math.min(1.0, count.toDouble / maxCount.toDouble)
+          }
         }
       }
     }
@@ -61,8 +65,10 @@ class MainServlet(implicit val bindingModule: BindingModule) extends SparkSearch
     // run the map
     contentType = "text/html"
 
+    val origins = originService.getEntityList()
+
     val data1 = List("title" -> "Spark Search Example")
-    val data2 = data1 ++ List("originOpt" -> None, "gridCells" -> gridCells)
+    val data2 = data1 ++ List("originOpt" -> None, "gridCells" -> gridCells, "origins" -> origins)
 
     ssp("/map/index", data2.toSeq: _*)
   }
@@ -185,10 +191,12 @@ class MainServlet(implicit val bindingModule: BindingModule) extends SparkSearch
   get("/map") {
     contentType = "text/html"
 
+    val origins = originService.getEntityList()
+
     val originOpt = if (params.contains("id")) originService.findById(params("id").toLong) else None
 
     val data1 = List("title" -> "Spark Search Example")
-    val data2 = data1 ++ List("originOpt" -> originOpt, "gridCells" -> gridCells)
+    val data2 = data1 ++ List("originOpt" -> originOpt, "gridCells" -> gridCells, "origins" -> origins)
 
     ssp("/map/index", data2.toSeq: _*)
   }

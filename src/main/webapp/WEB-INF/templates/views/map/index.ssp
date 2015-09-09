@@ -3,6 +3,8 @@
 
 <%@ val originOpt: Option[com.incra.model.Origin] %>
 <%@ val gridCells: Seq[com.incra.model.GridCell] %>
+<%@ val origins: Seq[com.incra.model.Origin] %>
+
 
 <style>
 
@@ -12,10 +14,46 @@
   }
 </style>
 
-<div style="margin-top: 30px; background: #ccc; padding: 10px">
-Google Maps Integration
-</br>
- <div id="map"></div>
+<div class="row" style="margin-top: 30px">
+  <div class="col-md-8" style="background: #ccc; padding: 10px">
+    Projected Spread
+    </br>
+    <div id="map"></div>
+  </div>
+  <div class="col-md-4">
+    <h4>Time</h4>
+    <select name="dayIndex">
+      <option value="0">Onset</option>
+      <option value="1">1 Day</option>
+      <option value="2">2 Days</option>
+      <option value="3">3 Days</option>
+      <option value="4">4 Days</option>
+      <option value="5">5 Days</option>
+    </select>
+    <p>&nbsp;</p>
+
+    #if (origins.size > 0)
+    <h4>Patient Tracking</h4>
+    <table class="table">
+    <tr>
+    <th>Name</th>
+    <th>Date</th>
+    <th>Lat</th>
+    <th>Lng</th>
+    </tr>
+    #for (origin <- origins)
+    <tr>
+    <td>${origin.name}</td>
+        <td>${origin.date}</td>
+
+    <td>${origin.lat}</td>
+        <td>${origin.lat}</td>
+
+    </tr>
+      #end
+    </table>
+      #end
+  </div>
 </div>
 
 <script>
