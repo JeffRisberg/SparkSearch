@@ -1,6 +1,6 @@
 package com.incra.services
 
-import com.incra.model.{GridCell, Target}
+import com.incra.model.{GridCell, Particle}
 import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.rdd.RDD
 
@@ -55,7 +55,7 @@ class ProcessService extends Serializable {
                           numTimesteps: Int,
                           baseSeed: Long,
                           numTrials: Int,
-                          parallelism: Int): RDD[Target] = {
+                          parallelism: Int): RDD[Particle] = {
 
     // Generate different seeds so that our simulations don't all end up with the same results
     val seeds = (baseSeed until baseSeed + parallelism)
@@ -66,10 +66,10 @@ class ProcessService extends Serializable {
       trialResults(_, numTimesteps, numTrials / parallelism))
   }
 
-  def trialResults(seed: Long, numTimesteps: Int, numTrials: Int): Seq[Target] = {
+  def trialResults(seed: Long, numTimesteps: Int, numTrials: Int): Seq[Particle] = {
 
     val rand = new MersenneTwister(seed)
-    val trialReturns = new Array[Target](numTrials)
+    val trialReturns = new Array[Particle](numTrials)
 
     val latitudeDistribution = new NormalDistribution(rand, 7.02, 0.05, 0.0)
     val longitudeDistribution = new NormalDistribution(rand, -9.44, 0.05, 0.0)
@@ -85,7 +85,7 @@ class ProcessService extends Serializable {
       val dX = dLatitudeDistribution.sample()
       val dY = dLongitudeDistribution.sample()
 
-      val target = Target(x, y, dX, dY)
+      val target = Particle(x, y, dX, dY)
       for (t <- 1 until numTimesteps) {
         target.step(1.0)
       }
