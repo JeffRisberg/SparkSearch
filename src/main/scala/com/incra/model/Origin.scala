@@ -5,7 +5,7 @@ import java.sql.Date
 import scala.slick.driver.MySQLDriver.simple._
 
 /**
- * Definition of the Challenge entity
+ * Definition of the Origin entity
  *
  * @author Jeff Risberg
  * @since 06/11/2015
