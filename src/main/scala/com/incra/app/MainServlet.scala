@@ -117,7 +117,7 @@ class MainServlet(implicit val bindingModule: BindingModule) extends SparkSearch
 
     val facilities = facilityService.getEntityList()
 
-    val data1 = List("title" -> "Spark Search Challenges")
+    val data1 = List("title" -> "Spark Search Facilities")
     val data2 = data1 ++ List("name" -> "Liberia", "facilities" -> facilities)
 
     ssp("/facility/index", data2.toSeq: _*)
@@ -140,7 +140,7 @@ class MainServlet(implicit val bindingModule: BindingModule) extends SparkSearch
     if (facilityOpt.isDefined) {
       val facility = facilityOpt.get
 
-      val data1 = List("title" -> "Spark Search Challenge")
+      val data1 = List("title" -> "Spark Search Facilities")
       val data2 = data1 ++ List("facility" -> facility)
 
       ssp("/facility/show", data2.toSeq: _*)
@@ -155,7 +155,7 @@ class MainServlet(implicit val bindingModule: BindingModule) extends SparkSearch
 
     val origins = originService.getEntityList()
 
-    val data1 = List("title" -> "Spark Search Leaderboards")
+    val data1 = List("title" -> "Spark Search Patient Origins")
     val data2 = data1 ++ List("name" -> "Primary Reportings", "origins" -> origins)
 
     ssp("/origin/index", data2.toSeq: _*)
