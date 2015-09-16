@@ -12,7 +12,7 @@ import scala.slick.driver.MySQLDriver.simple._
 object ServiceConfiguration extends NewBindingModule(mutableBindingModule => {
   import mutableBindingModule._
 
-  val url = "jdbc:mysql://localhost:3307/sparksearch"
+  val url = "jdbc:mysql://localhost:3306/sparksearch"
   val driver = "com.mysql.jdbc.Driver"
   val user = "developer"
   val password = "123456"
