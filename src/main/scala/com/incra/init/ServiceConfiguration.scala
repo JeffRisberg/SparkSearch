@@ -1,8 +1,7 @@
 package com.incra.init
 
 import com.escalatesoft.subcut.inject.NewBindingModule
-import com.incra.app.MainServlet
-import com.incra.services.{FacilityService, OriginService, ActivityService}
+import com.incra.services.{SiteService, FacilityService, OriginService, ActivityService}
 
 import scala.slick.driver.MySQLDriver.simple._
 
@@ -19,6 +18,10 @@ object ServiceConfiguration extends NewBindingModule(mutableBindingModule => {
 
   bind[Database] toProvider {
     implicit bindingModule => Database.forURL(url, user = user, password = password, driver = driver)
+  }
+
+  bind[SiteService] toProvider {
+    implicit bindingModule => new SiteService
   }
 
   bind[ActivityService] toProvider {

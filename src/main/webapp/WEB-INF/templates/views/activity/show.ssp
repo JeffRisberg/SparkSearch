@@ -10,7 +10,7 @@
         <td>Description:</td><td>${activity.description}</td>
     </tr>
     <tr>
-        <td>Uom:</td><td>${activity.uom}</td>
+        <td>Effectiveness:</td><td>${activity.uom}</td>
     </tr>
 </table>
 </div>

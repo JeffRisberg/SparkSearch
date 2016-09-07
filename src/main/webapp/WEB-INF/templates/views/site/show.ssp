@@ -1,0 +1,16 @@
+<% import com.incra.model.Site %>
+<%@ val site: com.incra.model.Site %>
+
+<div style="margin-top: 30px; background: #ccc; padding: 10px">
+<table class="table">
+    <tr>
+        <td>Name:</td><td>${site.name}</td>
+    </tr>
+    <tr>
+        <td>Lat:</td><td>${site.lat}</td>
+    </tr>
+    <tr>
+        <td>Lng:</td><td>${site.lng}</td>
+    </tr>
+</table>
+</div>

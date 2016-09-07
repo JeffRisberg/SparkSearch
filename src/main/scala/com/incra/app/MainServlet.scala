@@ -2,13 +2,15 @@ package com.incra.app
 
 import com.escalatesoft.subcut.inject.BindingModule
 import com.incra.model.GridCell
-import com.incra.services.{ProcessService, ActivityService, FacilityService, OriginService}
+import com.incra.services._
 
 /**
  * @author Jeff Risberg
  * @since late August 2015
  */
 class MainServlet(implicit val bindingModule: BindingModule) extends SparkSearchStack {
+
+  private def siteService = inject[SiteService]
 
   private def activityService = inject[ActivityService]
 
@@ -71,6 +73,44 @@ class MainServlet(implicit val bindingModule: BindingModule) extends SparkSearch
     val data2 = data1 ++ List("originOpt" -> None, "gridCells" -> gridCells, "origins" -> origins)
 
     ssp("/map/index", data2.toSeq: _*)
+  }
+
+  get("/site") {
+    contentType = "text/html"
+
+    val sites = siteService.getEntityList()
+
+    val data1 = List("title" -> "Spark Search Sites")
+    val data2 = data1 ++ List("name" -> "Primary Reportings", "sites" -> sites)
+
+    ssp("/site/index", data2.toSeq: _*)
+  }
+
+  get("/site.json") {
+    contentType = formats("json")
+
+    trapData {
+      val origins = siteService.getEntityList()
+
+      origins
+    }
+  }
+
+  get("/site/:id") {
+    contentType = "text/html"
+
+    val siteOpt = siteService.findById(params("id").toLong)
+    if (siteOpt.isDefined) {
+      val site = siteOpt.get
+
+      val data1 = List("title" -> "Possible Transfer Site")
+      val data2 = data1 ++ List("site" -> site)
+
+      ssp("/site/show", data2.toSeq: _*)
+    }
+    else {
+      redirect("/site")
+    }
   }
 
   get("/activity") {

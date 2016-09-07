@@ -7,7 +7,7 @@
     <tr>
         <th>Name</th>
         <th>Description</th>
-        <th>Units</th>
+        <th>Effectiveness</th>
     </tr>
     #for (activity <- activities)
         <tr>

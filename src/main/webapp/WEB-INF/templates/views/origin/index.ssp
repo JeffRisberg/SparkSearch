@@ -9,6 +9,7 @@
         <th>Date</th>
         <th>Lng</th>
         <th>Lng</th>
+        <th>&nbsp;</th>
     </tr>
     #for (origin <- origins)
         <tr>

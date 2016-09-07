@@ -1,0 +1,22 @@
+<% import com.incra.model.Site %>
+<%@ val sites: List[com.incra.model.Site] %>
+
+<div style="margin-top: 30px; background: #ccc; padding: 10px">
+<h3>The current suspected transfer sites are:</h3>
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Lng</th>
+        <th>Lng</th>
+        <th>&nbsp;</th>
+    </tr>
+    #for (site <- sites)
+        <tr>
+            <td><a href="/site/${site.id}">${site.name}</a></td>
+            <td>${site.lat}</td>
+            <td>${site.lng}</td>
+            <td><a href="/map?id=${site.id}">Map</a></td>
+        </tr>
+    #end
+</table>
+</div>
