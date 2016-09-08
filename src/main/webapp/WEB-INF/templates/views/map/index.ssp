@@ -4,6 +4,7 @@
 <%@ val originOpt: Option[com.incra.model.Origin] %>
 <%@ val gridCells: Seq[com.incra.model.GridCell] %>
 <%@ val origins: Seq[com.incra.model.Origin] %>
+<%@ val sites: Seq[com.incra.model.Site] %>
 
 
 <style>
@@ -33,7 +34,7 @@
     <p>&nbsp;</p>
 
     #if (origins.size > 0)
-    <h4>Patient Tracking</h4>
+    <h4>Case Tracking</h4>
     <table class="table">
     <tr>
     <th>Name</th>
@@ -90,5 +91,7 @@ function initMap() {
 
 }
 </script>
+
  <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
-        async defer></script>
+        async defer>
+</script>

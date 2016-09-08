@@ -68,9 +68,10 @@ class MainServlet(implicit val bindingModule: BindingModule) extends SparkSearch
     contentType = "text/html"
 
     val origins = originService.getEntityList()
+    val sites = siteService.getEntityList()
 
     val data1 = List("title" -> "Spark Search Example")
-    val data2 = data1 ++ List("originOpt" -> None, "gridCells" -> gridCells, "origins" -> origins)
+    val data2 = data1 ++ List("originOpt" -> None, "gridCells" -> gridCells, "origins" -> origins, "sites" -> sites)
 
     ssp("/map/index", data2.toSeq: _*)
   }
@@ -232,11 +233,12 @@ class MainServlet(implicit val bindingModule: BindingModule) extends SparkSearch
     contentType = "text/html"
 
     val origins = originService.getEntityList()
+    val sites = siteService.getEntityList()
 
     val originOpt = if (params.contains("id")) originService.findById(params("id").toLong) else None
 
     val data1 = List("title" -> "Spark Search Example")
-    val data2 = data1 ++ List("originOpt" -> originOpt, "gridCells" -> gridCells, "origins" -> origins)
+    val data2 = data1 ++ List("originOpt" -> originOpt, "gridCells" -> gridCells, "origins" -> origins, "sites" -> sites)
 
     ssp("/map/index", data2.toSeq: _*)
   }
