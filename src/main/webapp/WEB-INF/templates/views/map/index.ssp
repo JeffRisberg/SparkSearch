@@ -74,10 +74,8 @@ function initMap() {
   });
   #end
 
-
 #for (gridCell <- gridCells)
   new google.maps.Rectangle({
-
     strokeWeight: 0,
     fillColor: '#FF0000',
     fillOpacity: ${gridCell.probability},
@@ -88,6 +86,70 @@ function initMap() {
   });
 #end
 
+var line1 = [
+          {lat: 6.645, lng: -9.48},
+          {lat: 6.400, lng: -15.00}
+        ];
+        new google.maps.Polyline({
+          path: line1,
+          geodesic: true,
+          strokeColor: '#00FFFF',
+          strokeOpacity: 1.0,
+          strokeWeight: 2,
+          map: map
+        });
+
+var line2 = [
+          {lat: 6.645, lng: -9.48},
+          {lat: 6.100, lng: -12.00}
+        ];
+        new google.maps.Polyline({
+          path: line2,
+          geodesic: true,
+          strokeColor: '#00FFFF',
+          strokeOpacity: 1.0,
+          strokeWeight: 2,
+          map: map
+        });
+
+var line3 = [
+          {lat: 6.645, lng: -9.48},
+          {lat: 6.945, lng: -9.95}
+        ];
+        new google.maps.Polyline({
+          path: line3,
+          geodesic: true,
+          strokeColor: '#333333',
+          strokeOpacity: 1.0,
+          strokeWeight: 2,
+          map: map
+        });
+
+        var line4 = [
+          {lat: 6.945, lng: -9.95},
+          {lat: 6.427, lng: -10.733}
+        ];
+        new google.maps.Polyline({
+          path: line4,
+          geodesic: true,
+          strokeColor: '#333333',
+          strokeOpacity: 1.0,
+          strokeWeight: 2,
+          map: map
+        });
+
+#for (site <- sites)
+  new google.maps.Circle({
+    strokeColor: '#FF0000',
+    strokeOpacity: 0.8,
+    strokeWeight: 2,
+    fillColor: '#008000',
+    fillOpacity: 0.35,
+    map: map,
+    center: new google.maps.LatLng(${site.lat}, ${site.lng}),
+    radius: 5000
+  });
+#end
 
 }
 </script>
