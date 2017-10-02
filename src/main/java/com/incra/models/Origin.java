@@ -8,7 +8,7 @@ import javax.persistence.Table;
 import java.util.Date;
 
 /**
- * Region on a page
+ * Infection origin lat/lng
  *
  * @author Jeff Risberg
  * @since February 2014

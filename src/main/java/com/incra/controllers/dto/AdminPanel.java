@@ -4,7 +4,7 @@ package com.incra.controllers.dto;
  * The <i>AdminPanel</i> dto...
  *
  * @author Jeffrey Risberg
- * @since 11/01/11
+ * @since 09/26/2014
  */
 public class AdminPanel {
     private String name;

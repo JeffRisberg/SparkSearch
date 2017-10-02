@@ -5,7 +5,7 @@ import com.incra.database.AbstractDatedDatabaseItem;
 import javax.persistence.*;
 
 /**
- * Piece of a page
+ * Treatment facility
  *
  * @author Jeff Risberg
  * @since February 2014

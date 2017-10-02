@@ -1,4 +1,4 @@
 -- origins
 
-INSERT INTO users (id, firstName, lastName, email, password, date_created, last_updated)
+INSERT INTO origins (id, firstName, lastName, email, password, date_created, last_updated)
 values (1, 'Bob', 'Jones', 'bjones@gmail.com', '123456', now(), now());

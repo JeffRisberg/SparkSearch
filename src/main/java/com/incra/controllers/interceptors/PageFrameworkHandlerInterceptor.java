@@ -1,7 +1,7 @@
 package com.incra.controllers.interceptors;
 
 import com.incra.services.PageFrameworkService;
-import com.incra.services.UserService;
+//import com.incra.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,12 +22,12 @@ import javax.servlet.http.HttpSession;
  */
 public class PageFrameworkHandlerInterceptor implements HandlerInterceptor {
 
-    @Autowired
-    private UserService userService;
+    //@Autowired
+    //private UserService userService;
     @Autowired
     private PageFrameworkService pageFrameworkService;
 
-    @Override
+    //@Override
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object handler) throws Exception {
         HttpSession session = request.getSession(true);
@@ -49,14 +49,14 @@ public class PageFrameworkHandlerInterceptor implements HandlerInterceptor {
         return true;
     }
 
-    @Override
+    //@Override
     public void afterCompletion(HttpServletRequest request,
                                 HttpServletResponse response, Object handler, Exception ex)
             throws Exception {
         // nothing to do
     }
 
-    @Override
+    //@Override
     public void postHandle(HttpServletRequest request,
                            HttpServletResponse response, Object handler, ModelAndView modelAndView)
             throws Exception {
