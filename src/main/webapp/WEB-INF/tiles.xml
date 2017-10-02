@@ -34,24 +34,9 @@
         <put-attribute name="body" value="/WEB-INF/views/home/{1}.jsp"/>
     </definition>
 
-    <definition name="page/*" extends="standardLayout">
-        <put-attribute name="title" value="Custom Page"/>
-        <put-attribute name="body" value="/WEB-INF/views/page/{1}.jsp"/>
-    </definition>
-
-    <definition name="donation/*" extends="standardLayout">
-        <put-attribute name="title" value="Donation"/>
-        <put-attribute name="body" value="/WEB-INF/views/donation/{1}.jsp"/>
-    </definition>
-
     <definition name="adminHome/*" extends="standardLayout">
         <put-attribute name="title" value="Admin Home"/>
         <put-attribute name="body" value="/WEB-INF/views/adminHome/{1}.jsp"/>
-    </definition>
-
-    <definition name="user/*" extends="standardLayout">
-        <put-attribute name="title" value="Users"/>
-        <put-attribute name="body" value="/WEB-INF/views/user/{1}.jsp"/>
     </definition>
 
     <definition name="site/*" extends="standardLayout">
@@ -59,14 +44,14 @@
         <put-attribute name="body" value="/WEB-INF/views/site/{1}.jsp"/>
     </definition>
 
-    <definition name="box/*" extends="standardLayout">
-        <put-attribute name="title" value="Boxes"/>
-        <put-attribute name="body" value="/WEB-INF/views/box/{1}.jsp"/>
+    <definition name="origin/*" extends="standardLayout">
+        <put-attribute name="title" value="Origins"/>
+        <put-attribute name="body" value="/WEB-INF/views/origin/{1}.jsp"/>
     </definition>
 
-    <definition name="rubric/*" extends="standardLayout">
-        <put-attribute name="title" value="Rubric"/>
-        <put-attribute name="body" value="/WEB-INF/views/rubric/{1}.jsp"/>
+    <definition name="facility/*" extends="standardLayout">
+        <put-attribute name="title" value="Facilities"/>
+        <put-attribute name="body" value="/WEB-INF/view/facility/{1}.jsp"/>
     </definition>
 
 </tiles-definitions>
